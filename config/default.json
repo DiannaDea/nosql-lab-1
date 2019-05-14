@@ -1,0 +1,7 @@
+{
+  "mongo-db": {
+      "name": "user-notes",
+      "host": "ds147096.mlab.com",
+      "port": 47096
+  }
+}

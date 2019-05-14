@@ -1,0 +1,31 @@
+### Create user
+
+POST http://localhost:9000/api/users
+Content-Type: application/json
+
+{
+  "username": "dianae56",
+  "password": "diana4dd"
+}
+
+### Get users
+
+GET  http://localhost:9000/api/users
+
+### Update user
+
+PUT http://localhost:9000/api/users/5cc160afc72a66678d449c1c
+Content-Type: application/json
+
+{
+  "username": "diana44"
+}
+
+### Change password
+
+PUT http://localhost:9000/api/users/5cc160afc72a66678d449c1c/change-password
+Content-Type: application/json
+
+{
+  "password": "diana44"
+}

@@ -1,0 +1,41 @@
+### Create note
+
+POST http://localhost:9000/api/notes
+Content-Type: application/json
+Auth: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2RhZGE5NDVjMGE5N2YxZTcxOGY0N2YiLCJ1c2VybmFtZSI6ImRrZGtkIiwiaWF0IjoxNTU3ODQ2Njc2LCJleHAiOjE1NTc4OTY2NzZ9.pN4NepImSDdTdY7bmvO64WTaIS2UgK9pauqJ2DasplY
+
+{
+  "title": "diana",
+  "text": "diana"
+}
+
+### Get notes
+
+GET  http://localhost:9000/api/notes
+
+### Search notes by text
+
+GET  http://localhost:9000/api/notes?text=mama
+
+### Get all user notes
+
+GET  http://localhost:9000/api/notes/users/5cc161ccc72a66678d449c1d
+
+### Update note
+
+PUT http://localhost:9000/api/notes/5cc162cfc72a66678d449c1f
+Content-Type: application/json
+Auth: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2MxNjFjY2M3MmE2NjY3OGQ0NDljMWQiLCJ1c2VybmFtZSI6ImRpYW5hNCIsImlhdCI6MTU1NjE3NzM1NywiZXhwIjoxNTU2MjI3MzU3fQ.MOF5uWWGrQH6F4SOZm_erkIIf42zqydF-xiO6KNSZs8
+
+{
+  "text": "LALALA",
+  "title": "HAHA2222"
+}
+
+### Delete note
+
+DELETE http://localhost:9000/api/notes/5cc1620ec72a66678d449c1e
+Auth: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2MxNjFjY2M3MmE2NjY3OGQ0NDljMWQiLCJ1c2VybmFtZSI6ImRpYW5hNCIsImlhdCI6MTU1NjE3NzM1NywiZXhwIjoxNTU2MjI3MzU3fQ.MOF5uWWGrQH6F4SOZm_erkIIf42zqydF-xiO6KNSZs8
+
+
+поиск сортировка фильтрация
