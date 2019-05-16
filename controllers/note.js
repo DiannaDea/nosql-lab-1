@@ -6,7 +6,7 @@ const NoteController = {
   checkIfExists: (params) => Note.findOne({ ...params }),
   create: async (ctx) => {
     const { userId } = ctx;
-    const { title, text } = ctx.request.body;
+    const { title, text, status } = ctx.request.body;
 
     try {
       const note = await Note.create({
@@ -14,6 +14,7 @@ const NoteController = {
         title,
         text,
         userId,
+        status,
       });
 
       return ctx.send(200, note);
@@ -22,19 +23,38 @@ const NoteController = {
     }
   },
   getAll: async (ctx) => {
-    const notes = await Note.find(ctx.query);
+    const notes = await Note.find({});
 
     return (notes && notes.length)
       ? ctx.send(200, notes)
       : ctx.send(204);
   },
-  getAllUsers: async (ctx) => {
+  getAllSorted: async (ctx) => {
+    const { field, order } = ctx.query;
+    
+    const notes = await Note.find({}).sort({ [field]: order });
+
+    return ctx.send(200, notes);
+  },
+  getAllUserNotes: async (ctx) => {
+    const { filter, search, sort } = ctx.query;
+
     const { userId } = ctx.params;
 
     const user = await UserController.checkIfExists({ _id: userId });
     if (!user) return ctx.send(400, 'No user with such id');
 
-    const notes = await Note.find({ userId });
+    const notes = (sort) 
+      ? await Note.find({ 
+          userId,
+          ...(search && { ...search }),
+          ...(filter && { ...filter })
+        }).sort({ [sort.field]: sort.order })
+      : await Note.find({ 
+          userId,
+          ...(search && { ...search }),
+          ...(filter && { ...filter })
+        });
 
     return ctx.send(200, notes);
 

@@ -6,20 +6,35 @@ Auth: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2RhZGE5NDVjMGE5N2YxZTcxO
 
 {
   "title": "diana",
-  "text": "diana"
+  "text": "diana",
+  "status": "in progress"
 }
 
 ### Get notes
 
 GET  http://localhost:9000/api/notes
 
-### Search notes by text
-
-GET  http://localhost:9000/api/notes?text=mama
 
 ### Get all user notes
 
 GET  http://localhost:9000/api/notes/users/5cc161ccc72a66678d449c1d
+
+### Get all user notes (search + filter + sort)
+
+GET  http://localhost:9000/api/notes/users/5cc161ccc72a66678d449c1d?search={"text":"diana"}&filter={"status":"to do"}&sort={"field": "text", "order": -1}
+
+### Get all user notes (search)
+
+GET  http://localhost:9000/api/notes/users/5cc161ccc72a66678d449c1d?search={"text":"diana"}
+
+### Get all user notes (filter)
+
+GET  http://localhost:9000/api/notes/users/5cc161ccc72a66678d449c1d?filter={"status":"to do"}
+
+### Sort
+
+GET  http://localhost:9000/api/notes/users/5cc161ccc72a66678d449c1d?sort={"field": "text", "order": -1}
+
 
 ### Update note
 

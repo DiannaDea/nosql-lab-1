@@ -10,6 +10,7 @@
             <b-row>
               <b-form-input v-model="text" placeholder="Enter note text"></b-form-input>
             </b-row>
+            <b-form-select v-model="status" :options="options"></b-form-select>
             <b-row>
               <b-button @click="createNote" variant="outline-primary">Create note</b-button>
             </b-row>
@@ -30,6 +31,13 @@ export default {
     return {
       text: '',
       title: '',
+      status: null,
+        options: [
+          { value: null, text: 'Please select note type' },
+          { value: 'to do', text: 'To do' },
+          { value: 'in progress', text: 'In progress' },
+          { value: 'done', text: 'Done' },
+        ]
     };
   },
   computed: {
@@ -46,6 +54,7 @@ export default {
         noteParams: {
           title: this.title,
           text: this.text,
+          status: this.status,
         }, 
         token: this.token
       });

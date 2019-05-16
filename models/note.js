@@ -16,6 +16,11 @@ const NoteSchema = Schema({
     type: Schema.Types.ObjectId,
     ref: 'User',
   },
+  status: {
+    type: Schema.Types.String,
+    required: true,
+    default: 'to do',
+  },
   updatedAt: {
     type: Schema.Types.Date,
     required: true,

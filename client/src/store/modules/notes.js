@@ -9,9 +9,17 @@ const initialState = {
 const getters = {};
 
 const actions = {
-  async [actionTypes.GET_USER_NOTES]({ commit }, userId) {
+  async [actionTypes.GET_USER_NOTES]({ commit }, { userId, sort, filter, search }) {
     return new Promise(async (resolve) => {
-      const notes = await notesAPI.getUserNotes(userId);
+      const queryParamsArr = [];
+
+      if (sort) queryParamsArr.push(`sort=${JSON.stringify(sort)}`);
+      if (filter) queryParamsArr.push(`filter=${JSON.stringify(filter)}`);
+      if (search) queryParamsArr.push(`search=${JSON.stringify(search)}`);
+
+      const queryParams = queryParamsArr.join('&');
+
+      const notes = await notesAPI.getUserNotes(userId, queryParams);
       commit(mutationTypes.SET_USER_NOTES, notes);
       resolve(notes);
     });

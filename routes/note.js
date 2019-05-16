@@ -12,21 +12,28 @@ noteRouter.route({
   method: 'get',
   path: '/users/:userId',
   validate: {
+    query: {
+      filter: Joi.object({
+        status: Joi.string().optional(),
+      }).optional(),
+      search: Joi.object({
+        text: Joi.string().optional(),
+      }).optional(),
+      sort: Joi.object({
+        field: Joi.string(),
+        order: Joi.number(),
+      }).optional(),
+    },
     params: {
       userId: Joi.string().required(),
     },
   },
-  handler: NoteController.getAllUsers,
+  handler: NoteController.getAllUserNotes,
 });
 
 noteRouter.route({
   method: 'get',
   path: '/',
-  validate: {
-    query: {
-      text: Joi.string().optional(),
-    },
-  },
   handler: NoteController.getAll,
 });
 
@@ -39,6 +46,7 @@ noteRouter.route({
     body: {
       title: Joi.string().required(),
       text: Joi.string().required(),
+      status: Joi.string().valid(['to do', 'in progress', 'done']).required(),
     },
     type: 'json',
   },

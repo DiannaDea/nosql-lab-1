@@ -41,6 +41,7 @@ export default {
         { key: '_id'},
         { key: 'title'},
         { key: 'text' },
+        { key: 'status' },
         { key: 'actions', label: 'Actions' }
       ],
       infoModal: {
