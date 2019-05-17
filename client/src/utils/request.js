@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Vue from 'vue';
 
 const BASE_API_URL = 'http://localhost:9000';
 
@@ -12,6 +13,12 @@ const request = async (url, method, body = {}, token) => {
     });
     return response.data;
   } catch (error) {
+    Vue.notify({
+      type: 'error',
+      group: 'notifications',
+      title: 'Error',
+      text: error.response.data.message,
+    });
     return error;
   }
 };

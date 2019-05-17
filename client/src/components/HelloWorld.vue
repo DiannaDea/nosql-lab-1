@@ -1,5 +1,6 @@
 <template>
   <div class="hello">
+    <notifications group="notifications" />
     <b-container>
       <b-row>
         <b-col md="4" offset-md="4">
